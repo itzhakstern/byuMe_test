@@ -1,6 +1,6 @@
 import unittest
 from selenium.common.exceptions import NoSuchElementException
-
+import sys
 import page_factory_for_buyme_test
 
 
@@ -25,7 +25,16 @@ class MyTestCase(unittest.TestCase):
         except NoSuchElementException:
             flag = False
         self.assertTrue(flag, "attempt to register to the 'buyme' site id filed")
+        self.assertEqual(self.driver.title, self.page_factory.DATA['excepted_title'])
+
+
+def main(out):
+    loader = unittest.TestLoader()
+
+    suite = loader.loadTestsFromModule(sys.modules[__name__])
+    unittest.TextTestRunner(out).run(suite)
 
 
 if __name__ == '__main__':
-    unittest.main()
+    with open('byuMe_test_result.txt', 'w') as f:
+        main(f)
