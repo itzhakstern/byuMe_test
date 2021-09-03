@@ -8,7 +8,6 @@ class MyTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.page_factory = page_factory_for_buyme_test.PageFactory()
-        cls.page_factory.init_driver()
         cls.driver = cls.page_factory.driver
         cls.page_factory.open_buyme_website()
 
