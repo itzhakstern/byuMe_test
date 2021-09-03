@@ -19,17 +19,14 @@ class PageFactory():
         self.email = PageFactory.DATA['mail']
         self.password = PageFactory.DATA['password']
         self.confirm_password = PageFactory.DATA['password_confirm']
-        self.driver = self.init_driver()
 
     def init_driver(self):
-        driver = None
         if PageFactory.DATA['browser_type'] == 'Chrome':
-            driver = webdriver.Chrome()
+            self.driver = webdriver.Chrome()
         elif PageFactory.DATA['browser_type'] == 'Edge':
-            driver = webdriver.Edge()
+            self.driver = webdriver.Edge()
         buyme_url = 'https://buyme.co.il/'
-        driver.get(buyme_url)
-        return driver
+        self.driver.get(buyme_url)
 
 
     def open_buyme_website(self):
