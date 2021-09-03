@@ -28,7 +28,7 @@ class PageFactory():
         elif PageFactory.DATA['browser_type'] == 'Edge':
             driver = webdriver.Edge()
         buyme_url = 'https://buyme.co.il/'
-        self.driver.get(buyme_url)
+        driver.get(buyme_url)
         return driver
 
 
