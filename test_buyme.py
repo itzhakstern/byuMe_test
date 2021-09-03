@@ -21,6 +21,7 @@ class MyTestCase(unittest.TestCase):
         try:
             self.driver.find_element_by_id("ember1530")
             flag = True
+            self.driver.implicitly_wait(1)
         except NoSuchElementException:
             flag = False
         self.assertTrue(flag, "attempt to register to the 'buyme' site id filed")
