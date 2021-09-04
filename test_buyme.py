@@ -25,8 +25,7 @@ class MyTestCase(unittest.TestCase):
         except NoSuchElementException:
             flag = False
         self.assertTrue(flag, "attempt to register to the 'buyme' site id filed")
-        #TODO: check this test
-        # self.assertEqual(self.driver.title, self.page_factory.DATA['excepted_title'])
+        self.assertEqual(self.driver.title, self.page_factory.DATA['excepted_title'])
 
 
 def main(out):

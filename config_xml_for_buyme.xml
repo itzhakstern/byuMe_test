@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <buy_me_website>
-  <browser_type>Chrome</browser_type>
-  <excepted_title>BUYME אתר המתנות והחוויות הגדול בישראל | Gift Card</excepted_title>
-  <first_name>Josh</first_name>
-  <mail>16692828765@gmail.com</mail>
+  <browser_type>Edge</browser_type>
+  <excepted_title>BUYME אתר המתנות והחוויות הגדול בישראל | Gift Card</excepted_title>
+  <first_name>Sami</first_name>
+  <mail>35350886880@gmail.com</mail>
   <password>Abcd1234</password>
   <password_confirm>Abcd1234</password_confirm>
 </buy_me_website>

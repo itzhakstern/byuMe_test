@@ -5,7 +5,7 @@ browser_options = ["Chrome", "Edge"]
 first_name_options = ["Itzhak", "Jek", "Sami", "Josh"]
 
 INPUT = {"browser_type": random.choice(browser_options),
-         "excepted_title": "BUYME אתר המתנות והחוויות הגדול בישראל | Gift Card",
+         "excepted_title": "BUYME אתר המתנות והחוויות הגדול בישראל |\xa0Gift Card",
          "first_name": random.choice(first_name_options),
          'mail': f"{random.randint(1111111111,99999999999)}@gmail.com",
          "password": "Abcd1234",
