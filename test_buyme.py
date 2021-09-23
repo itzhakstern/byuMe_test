@@ -10,27 +10,32 @@ from selenium.webdriver.chrome.options import Options
 
 
 class ByuMeTest(unittest.TestCase):
-    driver = None
-    page_factory = None
-    DATA = {}
+
+
+
+
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.driver = ByuMeTest.init_driver()
+        cls.DATA = {}
+        contents_xml_file = et.parse('config_xml_for_buyme.xml')
+        for items in contents_xml_file.iter():
+            ByuMeTest.DATA[items.tag] = items.text
+        cls.driver = ByuMeTest.init_driver(cls.DATA)
         cls.page_factory = page_factory_for_buyme_test.PageFactory(cls.driver)
 
+
     @staticmethod
-    def init_driver():
+    def init_driver(data):
         driver = None
-        print(ByuMeTest.DATA['browser_type'])
-        if ByuMeTest.DATA['browser_type'] == 'Chrome':
+        if data['browser_type'] == 'Chrome':
             chrome_options = Options()
             chrome_options.add_argument("--disable-extensions")
             chrome_options.add_argument("--disable-popup-blocking")
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--no-sandbox")
             driver = webdriver.Chrome()
-        elif ByuMeTest.DATA['browser_type'] == 'Safari':
+        elif data['browser_type'] == 'Safari':
             driver = webdriver.Safari()
         buyme_url = 'https://buyme.co.il/'
         driver.maximize_window()
@@ -74,16 +79,8 @@ def create_xml_file():
     config.write_to_file("config_xml_for_buyme.xml")
 
 
-def data_from_xml_config():
-    contents_xml_file = et.parse('config_xml_for_buyme.xml')
-    for items in contents_xml_file.iter():
-        ByuMeTest.DATA[items.tag] = items.text
-
-
 def main(out):
     create_xml_file()
-    data_from_xml_config()
-    print(ByuMeTest.DATA)
 
     loader = unittest.TestLoader()
     suite = loader.loadTestsFromModule(sys.modules[__name__])
