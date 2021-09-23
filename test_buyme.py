@@ -6,6 +6,7 @@ import random
 from lxml import etree as et
 import page_factory_for_buyme_test
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 class ByuMeTest(unittest.TestCase):
@@ -21,10 +22,16 @@ class ByuMeTest(unittest.TestCase):
     @staticmethod
     def init_driver():
         driver = None
+        print(ByuMeTest.DATA['browser_type'])
         if ByuMeTest.DATA['browser_type'] == 'Chrome':
+            chrome_options = Options()
+            chrome_options.add_argument("--disable-extensions")
+            chrome_options.add_argument("--disable-popup-blocking")
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--no-sandbox")
             driver = webdriver.Chrome()
-        elif ByuMeTest.DATA['browser_type'] == 'Edge':
-            driver = webdriver.Edge()
+        elif ByuMeTest.DATA['browser_type'] == 'Safari':
+            driver = webdriver.Safari()
         buyme_url = 'https://buyme.co.il/'
         driver.maximize_window()
         driver.get(buyme_url)
@@ -49,7 +56,7 @@ class ByuMeTest(unittest.TestCase):
 
 #####------------------- main function --------------------####
 
-browser_options = ["Chrome", "Edge"]
+browser_options = ["Chrome"]
 first_name_options = ["Itzhak", "Jek", "Sami", "Josh"]
 
 INPUT = {"browser_type": random.choice(browser_options),
@@ -76,6 +83,7 @@ def data_from_xml_config():
 def main(out):
     create_xml_file()
     data_from_xml_config()
+    print(ByuMeTest.DATA)
 
     loader = unittest.TestLoader()
     suite = loader.loadTestsFromModule(sys.modules[__name__])
